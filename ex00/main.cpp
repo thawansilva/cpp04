@@ -20,7 +20,7 @@ void separator(std::string title)
 
 
 int main() {
-	std::cout << "=== TESTE 1: Instanciação básica ===" << std::endl;
+	separator("BASIC INSTANTIATION")
 	const Animal* animal = new Animal();
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
@@ -33,7 +33,7 @@ int main() {
 	dog->makeSound();
 	cat->makeSound();
 	
-	std::cout << "\n=== TESTE 2: Polimorfismo ===" << std::endl;
+	separator("POLYMORPHISM")
 	const Animal* zoo[4];
 	
 	zoo[0] = new Dog();
@@ -46,7 +46,7 @@ int main() {
 		zoo[i]->makeSound();
 	}
 	
-	std::cout << "\n=== TESTE 3: Destrutores ===" << std::endl;
+	separator("DESTRUCTORS")
 	delete animal;
 	delete dog;
 	delete cat;
@@ -55,7 +55,7 @@ int main() {
 		delete zoo[i];
 	}
 	
-	std::cout << "\n=== TESTE 4: Cópia e atribuição ===" << std::endl;
+	separator("COPY AND ATTRIBUTION");
 	Dog originalDog;
 	Dog copiedDog(originalDog); // construtor de cópia
 	
@@ -69,11 +69,11 @@ int main() {
 	std::cout << "Assigned: ";
 	assignedDog.makeSound();
 	
-	std::cout << "\n=== TESTE 5: Const correctness ===" << std::endl;
+	separator("CONST CORRECTNESS");
 	const Dog constDog;
 	constDog.makeSound(); // só funciona se método for const
 	
-	std::cout << "\n=== TESTE 6: Array grande (stress test) ===" << std::endl;
+	separator("BIG ARRAY (STRESS TEST)");
 	const Animal* bigZoo[100];
 	
 	for (int i = 0; i < 100; i++) {
@@ -91,7 +91,7 @@ int main() {
 	    delete bigZoo[i];
 	}
 	
-	std::cout << "\n=== TESTE FINALIZADO ===" << std::endl;
+	separator("FINISH TEST");
 
 	return 0;
 }
