@@ -24,7 +24,7 @@ Animal::Animal(const std::string& type) : type(type)
 
 Animal::~Animal()
 {
-	std::cout << "Animal of type " << type << " died" << std::endl;
+	std::cout << "Animal died" << std::endl;
 }
 
 Animal::Animal(const Animal& other)

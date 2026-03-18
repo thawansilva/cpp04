@@ -77,4 +77,17 @@ int main() {
 
 	std::cout << dogs[0].getBrain().getIdea(0) << std::endl;
 	std::cout << copyDogs[0].getBrain().getIdea(0) << std::endl;
+
+	separator("BRAIN TEST");
+	Brain b1;
+	b1.setIdea(0, "Hello");
+
+	Brain b2;
+	b2 = b1;
+
+	b2.setIdea(0, "World");
+
+	std::cout << "b1: " << b1.getIdea(0) << std::endl;
+	std::cout << "b2: " << b2.getIdea(0) << std::endl;
+	separator("FINISH TESTS");
 }

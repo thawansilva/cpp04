@@ -13,8 +13,6 @@ Brain::~Brain()
 Brain::Brain(const Brain& other)
 {
 	*this = other;
-	for (int i = 0; i < IDEAS_SIZE; ++i)
-		ideas[i] = other.ideas[i];
 	std::cout << "Brain copy constructor was called" << std::endl;
 }
 
