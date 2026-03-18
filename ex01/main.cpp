@@ -59,17 +59,17 @@ int main() {
 	std::cout << "B: " << b.getBrain().getIdea(0) << std::endl;
 
 	separator("COPY STRESS TEST");
-	Dog dogs[4];
+	Dog dogs[10];
 
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 10; i++) {
 		std::ostringstream oss;
 		oss << i;
 		dogs[i].getBrain().setIdea(0, "Idea " + oss.str());
 	}
 
-	Dog copyDogs[4];
+	Dog copyDogs[10];
 
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 10; i++) {
 		copyDogs[i] = dogs[i];
 	}
 
