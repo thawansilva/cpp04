@@ -24,6 +24,8 @@ public:
 	Cat& operator=(const Cat& other);
 	// Member functions
 	void	makeSound(void) const;
+	// Getters & Setters
+	Brain&	getBrain(void) const;
 private:
 	Brain* _brain;
 };

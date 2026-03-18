@@ -24,6 +24,8 @@ public:
 	Dog& operator=(const Dog& other);
 	// Member functions
 	void	makeSound(void) const;
+	// Getters & Setters
+	Brain&	getBrain(void) const;
 private:
 	Brain* _brain;
 };

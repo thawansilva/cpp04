@@ -20,14 +20,12 @@ Dog::Dog() : Animal("Dog")
 
 Dog::~Dog()
 {
-	delete _brain;
 	std::cout << "Dog died" << std::endl;
+	delete _brain;
 }
 
-Dog::Dog(const Dog& other): Animal(other.type)
+Dog::Dog(const Dog& other): Animal(other), _brain(NULL)
 {
-	_brain = new Brain();
-	_brain = other._brain;
 	*this = other;
 	std::cout << "Dog copy constructor was called" << std::endl;
 }
@@ -35,11 +33,21 @@ Dog::Dog(const Dog& other): Animal(other.type)
 Dog&	Dog::operator=(const Dog& other)
 {
 	if (this != &other)
+	{
 		type = other.type;
+		delete _brain;
+		_brain = new Brain();
+		*_brain = *other._brain;
+	}
 	return *this;
 }
 
 void	Dog::makeSound(void) const
 {
 	std::cout << "Au au" << std::endl;
+}
+
+Brain&	Dog::getBrain(void) const
+{
+	return *_brain;
 }
