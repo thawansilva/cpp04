@@ -12,9 +12,9 @@
 
 #include "Animal.hpp"
 
-Animal::Animal() : type("")
+Animal::Animal() : type("Undefined")
 {
-	std::cout << "Animal was created" << std::endl;
+	std::cout << "Default Animal was created" << std::endl;
 }
 
 Animal::Animal(const std::string& type) : type(type)
