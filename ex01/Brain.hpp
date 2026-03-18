@@ -1,4 +1,5 @@
 #include "iostream"
+#define IDEAS_SIZE 100
 
 #pragma once
 
@@ -13,9 +14,11 @@ public:
 	//Member Functions
 
 	// Getters & Setters
-	std::string&		getIdeas(void) const;
-	void				setNewIdeas(std::string& idea);
+	const std::string*		getIdeas(void) const;
+	const std::string		getIdea(const unsigned int idx) const;
+	void					setNewIdeas(const unsigned int idx,
+			std::string& idea);
 
 private:
-	std::string	ideas[100];
+	std::string	ideas[IDEAS_SIZE];
 };

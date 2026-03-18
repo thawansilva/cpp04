@@ -23,12 +23,24 @@ Brain&	Brain::operator=(const Brain& other)
 	return *this;
 }
 
-std::string[]		getIdeas(void) const
+const std::string*		Brain::getIdeas(void) const
 {
 	return ideas;
 }
 
-void				setNewIdeas(std::string& idea);
+const std::string		Brain::getIdea(const unsigned int idx) const
 {
-	(void)idea;
+	if (idx > IDEAS_SIZE)
+		return "";
+	return ideas[idx];
+}
+void					Brain::setNewIdeas(const unsigned int idx,
+		std::string& idea)
+{
+	if (idx > IDEAS_SIZE)
+	{
+		std::cout << "Limit of ideas reached" << std::endl;
+		return ;
+	}
+	ideas[idx] = idea;
 }

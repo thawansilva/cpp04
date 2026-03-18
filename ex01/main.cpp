@@ -12,13 +12,29 @@
 
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "Animal.hpp"
 
 void separator(std::string title)
 {
 	std::cout << "\n========== " << title << " ==========\n";
 }
 
-
 int main() {
-	Animal	animals[10];
+	Animal**	animals = new Animal*[ZOO_SIZE];
+	for (int i = 0; i < ZOO_SIZE; ++i)
+	{
+		if (i < ZOO_SIZE / 2)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
+	//for (int i = 0; i < 5; ++i)
+	//{
+	//	animals[0]->getIdea(i);
+	//}
+	for (int i = 0; i < ZOO_SIZE; ++i)
+	{
+		delete animals[i];
+	}
+	delete [] animals;
 }
