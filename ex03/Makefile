@@ -1,7 +1,7 @@
 NAME := interface
 
 # Source files and Objects
-SRC := main.cpp AMateria.cpp Ice.cpp Cure.cpp
+SRC := main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 OBJS := $(SRC:%.cpp=%.o)
 
 # Flags

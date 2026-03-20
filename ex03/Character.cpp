@@ -32,9 +32,10 @@ Character::Character(const Character& other)
 
 Character&	Character::operator=(const Character& other)
 {
+	std::cout << "Character assignment operator called" << std::endl;
 	if (this != &other)
 	{
-		this->_name = other.name;
+		this->_name = other._name;
 		for (int i = 0; i < INVENTORY_SIZE; ++i)
 		{
 			delete _inventory[i];
@@ -51,6 +52,11 @@ std::string const&	Character::getName() const
 	return (_name);
 }
 
+void				Character::setName(const std::string& name)
+{
+	_name = name;
+}
+
 bool				Character::isFullInventory(void) const
 {
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
@@ -61,13 +67,21 @@ bool				Character::isFullInventory(void) const
 	return true;
 }
 
-void				Character::equip(AMateria* m) const
+void				Character::equip(AMateria* m)
 {
-	if (!m || isFullInventory())
+	if (!m)
 		return ;
+	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	{
+		if (_inventory[i] == NULL)
+		{
+			_inventory[i] = m;
+			return ;
+		}
+	}
 }
 
-void				Character::unequip(int idx) const
+void				Character::unequip(int idx)
 {
 	if (idx < 0 || idx >= INVENTORY_SIZE || _inventory[idx] == NULL)
 		return ;

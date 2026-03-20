@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ICharacter.hpp"
+#include <string>
 
 class ICharacter;
 
