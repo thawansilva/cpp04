@@ -2,28 +2,32 @@
 
 Character::Character() : _name("Undefined")
 {
-	std::cout << "Default character constructor called" << std::endl;
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 		_inventory[i] = NULL;
+	std::cout << "Default character constructor called" << std::endl;
 }
 
 Character::Character(const std::string& name) : _name(name)
 {
-	std::cout << "Character constructor called" << std::endl;
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 		_inventory[i] = NULL;
+	std::cout << "Character constructor called" << std::endl;
 }
 
 Character::~Character()
 {
-	delete _inventory;
+	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	{
+		delete _inventory[i];
+		_inventory[i] = NULL;
+	}
 	std::cout << "Character Destructor called" << std::endl;
 }
 
 Character::Character(const Character& other)
 {
-	std::cout << "Character copy constructor called" << std::endl;
 	*this = other;
+	std::cout << "Character copy constructor called" << std::endl;
 }
 
 Character&	Character::operator=(const Character& other)
@@ -31,16 +35,23 @@ Character&	Character::operator=(const Character& other)
 	if (this != &other)
 	{
 		this->_name = other.name;
+		for (int i = 0; i < INVENTORY_SIZE; ++i)
+		{
+			delete _inventory[i];
+			_inventory[i] = NULL;
+		}
+		for (int i = 0; i < INVENTORY_SIZE; ++i)
+			_inventory[i] = other._inventory[i]->clone();
 	}
 	return *this;
 }
 
-std::string const&	getName() const
+std::string const&	Character::getName() const
 {
 	return (_name);
 }
 
-bool	isFullInventory(void) const
+bool				Character::isFullInventory(void) const
 {
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 	{
@@ -50,14 +61,25 @@ bool	isFullInventory(void) const
 	return true;
 }
 
-void				equip(AMateria* m) const
-{}
+void				Character::equip(AMateria* m) const
+{
+	if (!m || isFullInventory())
+		return ;
+}
 
-void				unequip(int idx) const
-{}
+void				Character::unequip(int idx) const
+{
+	if (idx < 0 || idx >= INVENTORY_SIZE || _inventory[idx] == NULL)
+		return ;
+	_inventory[idx] = NULL;
+}
 
-void				use(int idx, ICharacter& target) const
-{}
+void				Character::use(int idx, ICharacter& target) const
+{
+	if (idx < 0 || idx >= 4)
+		return ;
+	_inventory[idx]->use(target);
+}
 
 std::ostream&	operator<<(std::ostream& out, const Character& src)
 {
