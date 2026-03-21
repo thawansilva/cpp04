@@ -6,7 +6,7 @@ OBJS := $(SRC:%.cpp=%.o)
 
 # Flags
 C++ := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98
+CFLAGS := -g2 -O0 -Wall -Wextra -Werror -std=c++98
 CPPFLAGS := $(addprefix -I, .)
 
 all: $(NAME) 

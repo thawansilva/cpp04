@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/21 11:19:51 by thaperei          #+#    #+#             */
+/*   Updated: 2026/03/21 20:17:47 by thaperei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AMateria.hpp"
 
 AMateria::AMateria() : type("Undefined")
@@ -7,11 +19,15 @@ AMateria::AMateria() : type("Undefined")
 
 AMateria::AMateria(std::string const& type) : type(type)
 {
-	std::cout << "AMateria constructor called" << std::endl;
+	std::cout << "AMateria constructor of type " << type << " called" << std::endl;
 }
 
 AMateria::~AMateria()
 {
+	std::cout << "AMateria Destructor called" << std::endl;
+	std::cout << "AMateria Destructor called" << std::endl;
+	std::cout << "AMateria Destructor called" << std::endl;
+	std::cout << "AMateria Destructor called" << std::endl;
 	std::cout << "AMateria Destructor called" << std::endl;
 }
 
@@ -27,7 +43,7 @@ AMateria&	AMateria::operator=(const AMateria& other)
 	return (*this);
 }
 
-void	AMateria::use(ICharacter& target)
+void	AMateria::use(ICharacter& target) const
 {
 	std::cout << "* " << type << " Materia used by " << target.getName() << " *" << std::endl;
 }

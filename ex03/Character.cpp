@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/21 11:20:03 by thaperei          #+#    #+#             */
+/*   Updated: 2026/03/21 19:57:35 by thaperei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Character.hpp"
 
 Character::Character() : _name("Undefined")
@@ -11,7 +23,7 @@ Character::Character(const std::string& name) : _name(name)
 {
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 		_inventory[i] = NULL;
-	std::cout << "Character constructor called" << std::endl;
+	std::cout << "Character constructor " << _name << " called" << std::endl;
 }
 
 Character::~Character()
@@ -21,7 +33,7 @@ Character::~Character()
 		delete _inventory[i];
 		_inventory[i] = NULL;
 	}
-	std::cout << "Character Destructor called" << std::endl;
+	std::cout << "Character Destructor " << _name << " called" << std::endl;
 }
 
 Character::Character(const Character& other)
@@ -55,6 +67,14 @@ std::string const&	Character::getName() const
 void				Character::setName(const std::string& name)
 {
 	_name = name;
+}
+
+AMateria*			Character::getItem(const int idx)
+{
+	if (_inventory[idx])
+	{
+		return _inventory[idx];
+	}
 }
 
 bool				Character::isFullInventory(void) const
@@ -91,6 +111,8 @@ void				Character::unequip(int idx)
 void				Character::use(int idx, ICharacter& target) const
 {
 	if (idx < 0 || idx >= 4)
+		return ;
+	if (_inventory[idx] == NULL)
 		return ;
 	_inventory[idx]->use(target);
 }

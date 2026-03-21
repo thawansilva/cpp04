@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/21 11:20:11 by thaperei          #+#    #+#             */
+/*   Updated: 2026/03/21 19:14:40 by thaperei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 
 #include "ICharacter.hpp"
@@ -24,6 +36,7 @@ public:
 
 	// Getters & Setters
 	void	setName(const std::string& name);
+	void	getItem(const int idx);
 
 private:
 	AMateria*	_inventory[INVENTORY_SIZE];
