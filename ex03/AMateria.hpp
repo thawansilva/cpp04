@@ -6,7 +6,7 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 11:19:58 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/21 15:41:21 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:27:49 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	AMateria();
 	virtual ~AMateria ();
 	AMateria(std::string const& type);
-	AMateria(AMateria const& type);
+	AMateria(AMateria const& other);
 	AMateria&	operator=(const AMateria& other);
 
 	// Member Functions

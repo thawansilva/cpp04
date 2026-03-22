@@ -6,7 +6,7 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 11:19:14 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/21 18:59:06 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:33:37 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 
 MateriaSource&	MateriaSource::operator=(const MateriaSource& other)
 {
-	std::cout << "MateriaSource assignment called" << std::endl;
+	std::cout << "MateriaSource copy assignment called" << std::endl;
 	if (this != &other)
 	{
 		for (int i = 0; i < AMOUNT_ELEMENTS; ++i)

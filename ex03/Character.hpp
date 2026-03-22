@@ -6,7 +6,7 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 11:20:11 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/21 19:14:40 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/22 12:44:27 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Character : public ICharacter
 public:
 	Character();
 	Character(const std::string& name);
-	~Character();
+	virtual ~Character();
 	Character(const Character& other);
 	Character& operator=(const Character& other);
 
@@ -36,7 +36,6 @@ public:
 
 	// Getters & Setters
 	void	setName(const std::string& name);
-	void	getItem(const int idx);
 
 private:
 	AMateria*	_inventory[INVENTORY_SIZE];

@@ -6,13 +6,13 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 11:19:51 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/21 20:17:47 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:35:16 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-AMateria::AMateria() : type("Undefined")
+AMateria::AMateria() : type("undefined")
 {
 	std::cout << "Default AMateria constructor called" << std::endl;
 }
@@ -24,10 +24,6 @@ AMateria::AMateria(std::string const& type) : type(type)
 
 AMateria::~AMateria()
 {
-	std::cout << "AMateria Destructor called" << std::endl;
-	std::cout << "AMateria Destructor called" << std::endl;
-	std::cout << "AMateria Destructor called" << std::endl;
-	std::cout << "AMateria Destructor called" << std::endl;
 	std::cout << "AMateria Destructor called" << std::endl;
 }
 
@@ -50,7 +46,7 @@ void	AMateria::use(ICharacter& target) const
 
 const std::string&	AMateria::getType(void) const
 {
-	return type;
+	return this->type;
 }
 
 void		AMateria::setType(const std::string& type)

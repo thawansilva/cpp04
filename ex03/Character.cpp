@@ -6,13 +6,13 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 11:20:03 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/21 19:57:35 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/22 15:41:40 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-Character::Character() : _name("Undefined")
+Character::Character() : _name("undefined")
 {
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 		_inventory[i] = NULL;
@@ -36,9 +36,10 @@ Character::~Character()
 	std::cout << "Character Destructor " << _name << " called" << std::endl;
 }
 
-Character::Character(const Character& other)
+Character::Character(const Character &other)
 {
-	*this = other;
+	for (int i = 0; i < INVENTORY_SIZE; ++i)
+		this->_inventory[i] = other._inventory[i] ? other._inventory[i]->clone() : NULL;
 	std::cout << "Character copy constructor called" << std::endl;
 }
 
@@ -54,7 +55,7 @@ Character&	Character::operator=(const Character& other)
 			_inventory[i] = NULL;
 		}
 		for (int i = 0; i < INVENTORY_SIZE; ++i)
-			_inventory[i] = other._inventory[i]->clone();
+			this->_inventory[i] = other._inventory[i] ? other._inventory[i]->clone() : NULL;
 	}
 	return *this;
 }
@@ -69,14 +70,6 @@ void				Character::setName(const std::string& name)
 	_name = name;
 }
 
-AMateria*			Character::getItem(const int idx)
-{
-	if (_inventory[idx])
-	{
-		return _inventory[idx];
-	}
-}
-
 bool				Character::isFullInventory(void) const
 {
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
@@ -87,15 +80,15 @@ bool				Character::isFullInventory(void) const
 	return true;
 }
 
-void				Character::equip(AMateria* m)
+void				Character::equip(AMateria* materia)
 {
-	if (!m)
+	if (!materia)
 		return ;
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 	{
 		if (_inventory[i] == NULL)
 		{
-			_inventory[i] = m;
+			_inventory[i] = materia;
 			return ;
 		}
 	}
@@ -104,16 +97,20 @@ void				Character::equip(AMateria* m)
 void				Character::unequip(int idx)
 {
 	if (idx < 0 || idx >= INVENTORY_SIZE || _inventory[idx] == NULL)
+	{
+		std::cout << "Materia does not exist" << std::endl;
 		return ;
+	}
 	_inventory[idx] = NULL;
 }
 
 void				Character::use(int idx, ICharacter& target) const
 {
-	if (idx < 0 || idx >= 4)
+	if (idx < 0 || idx >= INVENTORY_SIZE || _inventory[idx] == NULL)
+	{
+		std::cout << "Materia does not exist" << std::endl;
 		return ;
-	if (_inventory[idx] == NULL)
-		return ;
+	}
 	_inventory[idx]->use(target);
 }
 
