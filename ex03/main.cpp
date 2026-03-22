@@ -6,7 +6,7 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:59:56 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/21 15:51:41 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/22 15:51:39 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,83 @@ int main()
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	separator("INVENTORY LIMIT TEST");
+	me->equip(src->createMateria("ice"));
+	me->equip(src->createMateria("ice"));
+	me->equip(src->createMateria("cure")); // should NOT be added (full)
+
+	separator("INVALID USE TEST");
+	me->use(-1, *bob);
+	me->use(10, *bob);
+
+	separator("UNEQUIP TEST");
+	AMateria* floor[10];
+	int floorCount = 0;
+
+	for (int i = 0; i < 4; i++)
+	{
+		floor[floorCount++] = NULL;
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		me->unequip(i);
+	}
+
+	separator("RE-EQUIP AFTER UNEQUIP");
+//	for (int i = 0; i < 4; i++)
+//	{
+//		tmp = src->createMateria("ice");
+//		me->equip(tmp);
+//	}
+//
+//	separator("DEEP COPY TEST (COPY CONSTRUCTOR)");
+//	Character original("original");
+//	original.equip(src->createMateria("ice"));
+//	original.equip(src->createMateria("cure"));
+//
+//	Character copy(original);
+//
+//	original.use(0, *bob);
+//	copy.use(0, *bob);
+//
+//	separator("MODIFY ORIGINAL AFTER COPY");
+//	original.unequip(0);
+//	original.use(0, *bob); // might do nothing
+//	copy.use(0, *bob);     // MUST still work if deep copy
+//
+//	separator("ASSIGNMENT OPERATOR TEST");
+//	Character assign("assign");
+//	assign = original;
+//
+//	assign.use(0, *bob);
+//
+//	separator("MATERIA SOURCE FULL TEST");
+//	MateriaSource ms;
+//	ms.learnMateria(new Ice());
+//	ms.learnMateria(new Cure());
+//	ms.learnMateria(new Ice());
+//	ms.learnMateria(new Cure());
+//	ms.learnMateria(new Ice()); // should NOT be learned
+//
+//	separator("UNKNOWN MATERIA TEST");
+//	AMateria* unknown = src->createMateria("fire");
+//	if (!unknown)
+//		std::cout << "Unknown materia not created (OK)" << std::endl;
+//
+	separator("CLEANUP");
+
 	delete bob;
 	delete me;
 	delete src;
+
+	// clean floor (if you stored unequipped materias)
+	for (int i = 0; i < floorCount; i++)
+	{
+		delete floor[i];
+	}
+
+	separator("END");
 	return 0;
 }
