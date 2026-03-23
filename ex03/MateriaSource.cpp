@@ -64,6 +64,7 @@ void	MateriaSource::learnMateria(AMateria* materia)
 			return ;
 		}
 	}
+	delete materia;
 	std::cout << "Templates Inventory are full" << std::endl;
 }
 

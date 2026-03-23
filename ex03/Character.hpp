@@ -15,10 +15,13 @@
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 #define INVENTORY_SIZE 4
+#define FLOOR_SIZE 10
 
 class Character : public ICharacter
 {
 public:
+	AMateria*	floor[FLOOR_SIZE];
+
 	Character();
 	Character(const std::string& name);
 	virtual ~Character();
@@ -31,8 +34,6 @@ public:
 	void				unequip(int idx);
 	void				use(int idx, ICharacter& target) const;
 
-	//Member Functions
-	bool	isFullInventory(void) const;
 
 	// Getters & Setters
 	void	setName(const std::string& name);
@@ -40,6 +41,8 @@ public:
 private:
 	AMateria*	_inventory[INVENTORY_SIZE];
 	std::string	_name;
+	//Member Functions
+	void				dropOnFloor(AMateria* materia);
 };
 
 std::ostream&	operator<<(std::ostream& out, const Character& src);

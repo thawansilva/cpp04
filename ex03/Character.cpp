@@ -12,18 +12,11 @@
 
 #include "Character.hpp"
 
-// FLOOR
-static AMateria* floor[10];
-int floorCount = 0;
-
-for (int i = 0; i < 10; i++)
+void	Character::dropOnFloor(AMateria* materia)
 {
-	floor[floorCount++] = NULL;
-}
-
-void	dropOnFloor(AMateria* materia)
-{
-	for (int i = 0; i < 10; ++i)
+	if (materia == NULL)
+		return ;
+	for (int i = 0; i < FLOOR_SIZE; ++i)
 	{
 		if (floor[i] == NULL)
 		{
@@ -35,6 +28,9 @@ void	dropOnFloor(AMateria* materia)
 
 Character::Character() : _name("undefined")
 {
+	// Init floor
+	for (int i = 0; i < FLOOR_SIZE; ++i)
+		floor[i] = NULL;
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 		_inventory[i] = NULL;
 	std::cout << "Default character constructor called" << std::endl;
@@ -42,6 +38,9 @@ Character::Character() : _name("undefined")
 
 Character::Character(const std::string& name) : _name(name)
 {
+	// Init floor
+	for (int i = 0; i < FLOOR_SIZE; ++i)
+		floor[i] = NULL;
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 		_inventory[i] = NULL;
 	std::cout << "Character constructor " << _name << " called" << std::endl;
@@ -49,21 +48,24 @@ Character::Character(const std::string& name) : _name(name)
 
 Character::~Character()
 {
+	// Clean floor
+	for (int i = 0; i < FLOOR_SIZE; i++)
+	{
+		delete floor[i];
+		floor[i] = NULL;
+	}
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 	{
 		delete _inventory[i];
 		_inventory[i] = NULL;
-	}
-	// clean floor (if you stored unequipped materias)
-	for (int i = 0; i < floorCount; i++)
-	{
-		delete floor[i];
 	}
 	std::cout << "Character Destructor " << _name << " called" << std::endl;
 }
 
 Character::Character(const Character &other)
 {
+	for (int i = 0; i < FLOOR_SIZE; i++)
+		floor[i] = NULL;
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 		this->_inventory[i] = other._inventory[i]
 			? other._inventory[i]->clone() : NULL;
@@ -76,11 +78,13 @@ Character&	Character::operator=(const Character& other)
 	if (this != &other)
 	{
 		this->_name = other._name;
+		// Clean Inventory
 		for (int i = 0; i < INVENTORY_SIZE; ++i)
 		{
 			delete _inventory[i];
 			_inventory[i] = NULL;
 		}
+		// Copy Inventory
 		for (int i = 0; i < INVENTORY_SIZE; ++i)
 			this->_inventory[i] = other._inventory[i]
 				? other._inventory[i]->clone() : NULL;
@@ -96,16 +100,6 @@ std::string const&	Character::getName() const
 void				Character::setName(const std::string& name)
 {
 	_name = name;
-}
-
-bool				Character::isFullInventory(void) const
-{
-	for (int i = 0; i < INVENTORY_SIZE; ++i)
-	{
-		if (_inventory[i] == NULL)
-			return false;
-	}
-	return true;
 }
 
 void				Character::equip(AMateria* materia)
