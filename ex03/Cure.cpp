@@ -43,6 +43,5 @@ void	Cure::use(ICharacter& character) const
 
 AMateria*	Cure::clone() const
 {
-	AMateria*	newCure = new Cure(*this);
-	return (newCure);
+	return (new Cure(*this));
 }

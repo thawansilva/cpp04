@@ -12,6 +12,27 @@
 
 #include "Character.hpp"
 
+// FLOOR
+static AMateria* floor[10];
+int floorCount = 0;
+
+for (int i = 0; i < 10; i++)
+{
+	floor[floorCount++] = NULL;
+}
+
+void	dropOnFloor(AMateria* materia)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		if (floor[i] == NULL)
+		{
+			floor[i] = materia;
+			return;
+		}
+	}
+}
+
 Character::Character() : _name("undefined")
 {
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
@@ -33,13 +54,19 @@ Character::~Character()
 		delete _inventory[i];
 		_inventory[i] = NULL;
 	}
+	// clean floor (if you stored unequipped materias)
+	for (int i = 0; i < floorCount; i++)
+	{
+		delete floor[i];
+	}
 	std::cout << "Character Destructor " << _name << " called" << std::endl;
 }
 
 Character::Character(const Character &other)
 {
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
-		this->_inventory[i] = other._inventory[i] ? other._inventory[i]->clone() : NULL;
+		this->_inventory[i] = other._inventory[i]
+			? other._inventory[i]->clone() : NULL;
 	std::cout << "Character copy constructor called" << std::endl;
 }
 
@@ -55,7 +82,8 @@ Character&	Character::operator=(const Character& other)
 			_inventory[i] = NULL;
 		}
 		for (int i = 0; i < INVENTORY_SIZE; ++i)
-			this->_inventory[i] = other._inventory[i] ? other._inventory[i]->clone() : NULL;
+			this->_inventory[i] = other._inventory[i]
+				? other._inventory[i]->clone() : NULL;
 	}
 	return *this;
 }
@@ -92,6 +120,7 @@ void				Character::equip(AMateria* materia)
 			return ;
 		}
 	}
+	delete	materia;
 }
 
 void				Character::unequip(int idx)
@@ -101,6 +130,7 @@ void				Character::unequip(int idx)
 		std::cout << "Materia does not exist" << std::endl;
 		return ;
 	}
+	dropOnFloor(_inventory[idx]);
 	_inventory[idx] = NULL;
 }
 

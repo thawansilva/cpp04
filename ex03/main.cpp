@@ -48,71 +48,57 @@ int main()
 	me->use(10, *bob);
 
 	separator("UNEQUIP TEST");
-	AMateria* floor[10];
-	int floorCount = 0;
-
-	for (int i = 0; i < 4; i++)
-	{
-		floor[floorCount++] = NULL;
-	}
-
 	for (int i = 0; i < 4; i++)
 	{
 		me->unequip(i);
 	}
 
 	separator("RE-EQUIP AFTER UNEQUIP");
-//	for (int i = 0; i < 4; i++)
-//	{
-//		tmp = src->createMateria("ice");
-//		me->equip(tmp);
-//	}
-//
-//	separator("DEEP COPY TEST (COPY CONSTRUCTOR)");
-//	Character original("original");
-//	original.equip(src->createMateria("ice"));
-//	original.equip(src->createMateria("cure"));
-//
-//	Character copy(original);
-//
-//	original.use(0, *bob);
-//	copy.use(0, *bob);
-//
-//	separator("MODIFY ORIGINAL AFTER COPY");
-//	original.unequip(0);
-//	original.use(0, *bob); // might do nothing
-//	copy.use(0, *bob);     // MUST still work if deep copy
-//
-//	separator("ASSIGNMENT OPERATOR TEST");
-//	Character assign("assign");
-//	assign = original;
-//
-//	assign.use(0, *bob);
-//
-//	separator("MATERIA SOURCE FULL TEST");
-//	MateriaSource ms;
-//	ms.learnMateria(new Ice());
-//	ms.learnMateria(new Cure());
-//	ms.learnMateria(new Ice());
-//	ms.learnMateria(new Cure());
-//	ms.learnMateria(new Ice()); // should NOT be learned
-//
-//	separator("UNKNOWN MATERIA TEST");
-//	AMateria* unknown = src->createMateria("fire");
-//	if (!unknown)
-//		std::cout << "Unknown materia not created (OK)" << std::endl;
-//
+	for (int i = 0; i < 4; i++)
+	{
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+	}
+
+	separator("DEEP COPY TEST (COPY CONSTRUCTOR)");
+	Character original("original");
+	original.equip(src->createMateria("ice"));
+	original.equip(src->createMateria("cure"));
+
+	Character copy(original);
+
+	original.use(0, *bob);
+	copy.use(0, *bob);
+
+	separator("MODIFY ORIGINAL AFTER COPY");
+	original.unequip(0);
+	original.use(0, *bob); // might do nothing
+	copy.use(0, *bob);     // MUST still work if deep copy
+
+	separator("ASSIGNMENT OPERATOR TEST");
+	Character assign("assign");
+	assign = original;
+
+	assign.use(0, *bob);
+
+	separator("MATERIA SOURCE FULL TEST");
+	MateriaSource ms;
+	ms.learnMateria(new Ice());
+	ms.learnMateria(new Cure());
+	ms.learnMateria(new Ice());
+	ms.learnMateria(new Cure());
+	ms.learnMateria(new Ice()); // should NOT be learned
+
+	separator("UNKNOWN MATERIA TEST");
+	AMateria* unknown = src->createMateria("fire");
+	if (!unknown)
+		std::cout << "Unknown materia not created (OK)" << std::endl;
+
 	separator("CLEANUP");
 
 	delete bob;
 	delete me;
 	delete src;
-
-	// clean floor (if you stored unequipped materias)
-	for (int i = 0; i < floorCount; i++)
-	{
-		delete floor[i];
-	}
 
 	separator("END");
 	return 0;
