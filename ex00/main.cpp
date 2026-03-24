@@ -6,7 +6,7 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:59:56 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/24 17:24:16 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/24 19:03:12 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void separator(std::string title)
 
 
 int main() {
-	separator("BASIC INSTANTIATION")
+	separator("BASIC INSTANTIATION");
 	const Animal* animal = new Animal();
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
@@ -33,7 +33,7 @@ int main() {
 	dog->makeSound();
 	cat->makeSound();
 	
-	separator("POLYMORPHISM")
+	separator("POLYMORPHISM");
 	const Animal* zoo[4];
 	
 	zoo[0] = new Dog();
