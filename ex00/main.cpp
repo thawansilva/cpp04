@@ -6,7 +6,7 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:59:56 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/17 20:54:22 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/24 17:24:16 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main() {
 		zoo[i]->makeSound();
 	}
 	
-	separator("DESTRUCTORS")
+	separator("DESTRUCTORS");
 	delete animal;
 	delete dog;
 	delete cat;
