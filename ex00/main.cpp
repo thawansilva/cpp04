@@ -6,7 +6,7 @@
 /*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:59:56 by thaperei          #+#    #+#             */
-/*   Updated: 2026/03/24 19:03:12 by thaperei         ###   ########.fr       */
+/*   Updated: 2026/03/25 18:38:46 by thaperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,6 @@ int main() {
 	separator("CONST CORRECTNESS");
 	const Dog constDog;
 	constDog.makeSound(); // só funciona se método for const
-	
-	separator("BIG ARRAY (STRESS TEST)");
-	const Animal* bigZoo[100];
-	
-	for (int i = 0; i < 100; i++) {
-		if (i % 2 == 0)
-			bigZoo[i] = new Dog();
-		else
-			bigZoo[i] = new Cat();
-	}
-	
-	for (int i = 0; i < 100; i++) {
-		bigZoo[i]->makeSound();
-	}
-	
-	for (int i = 0; i < 100; i++) {
-	    delete bigZoo[i];
-	}
 	
 	separator("FINISH TEST");
 
