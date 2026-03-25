@@ -23,6 +23,8 @@ Brain&	Brain::operator=(const Brain& other)
 		for (int i = 0; i < IDEAS_SIZE; ++i)
 			ideas[i] = other.ideas[i];
 	}
+	std::cout << "Brain assignment operator was called" << std::endl;
+}
 	return *this;
 }
 
